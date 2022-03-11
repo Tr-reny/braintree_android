@@ -32,11 +32,8 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_demo);
-
         setupActionBar();
-        setProgressBarIndeterminateVisibility(true);
     }
 
     @Override
