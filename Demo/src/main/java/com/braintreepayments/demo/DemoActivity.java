@@ -1,5 +1,7 @@
 package com.braintreepayments.demo;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,8 +27,6 @@ import com.braintreepayments.api.BraintreeClient;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class DemoActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, ActionBar.OnNavigationListener {
 
@@ -55,20 +55,6 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
         }
-    }
-
-    public BraintreeClient getBraintreeClient() {
-        // lazily instantiate braintree client in case the demo has been reset
-        if (braintreeClient == null) {
-            if (Settings.useTokenizationKey(this)) {
-                String tokenizationKey = Settings.getTokenizationKey(this);
-                braintreeClient = new BraintreeClient(this, tokenizationKey);
-            } else {
-                braintreeClient =
-                    BraintreeClientFactory.createBraintreeClientWithAuthorizationProvider(this);
-            }
-        }
-        return braintreeClient;
     }
 
     @Override
