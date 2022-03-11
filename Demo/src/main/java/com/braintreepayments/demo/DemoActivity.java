@@ -33,6 +33,7 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         super.onResume();
+        updateActionBarTitle();
 
         if (BuildConfig.DEBUG && ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -51,6 +52,14 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
         return NavHostFragment.findNavController(navHostFragment);
     }
 
+    private void updateActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            String environment = Settings.getEnvironment(this);
+            actionBar.setTitle(String.format("ENV: %s", environment));
+        }
+    }
+
     private void setupActionBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,18 +67,6 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
         NavController navController = getNavController();
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-//            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-//
-//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.environments, android.R.layout.simple_spinner_dropdown_item);
-//            actionBar.setListNavigationCallbacks(adapter, this);
-//
-//            List<String> envs = Arrays.asList(getResources().getStringArray(R.array.environments));
-//            actionBar.setSelectedNavigationItem(envs.indexOf(Settings.getEnvironment(this)));
-        }
     }
 
     @Override
@@ -88,7 +85,7 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        
+
         if (itemId == R.id.change_authorization || itemId == R.id.change_environment) {
             // TODO: show change auth / environment fragment
             return false;
