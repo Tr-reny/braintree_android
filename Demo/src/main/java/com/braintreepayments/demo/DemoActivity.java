@@ -2,14 +2,11 @@ package com.braintreepayments.demo;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +18,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class DemoActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, ActionBar.OnNavigationListener {
 
@@ -68,13 +62,13 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.environments, android.R.layout.simple_spinner_dropdown_item);
-            actionBar.setListNavigationCallbacks(adapter, this);
-
-            List<String> envs = Arrays.asList(getResources().getStringArray(R.array.environments));
-            actionBar.setSelectedNavigationItem(envs.indexOf(Settings.getEnvironment(this)));
+//            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+//
+//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.environments, android.R.layout.simple_spinner_dropdown_item);
+//            actionBar.setListNavigationCallbacks(adapter, this);
+//
+//            List<String> envs = Arrays.asList(getResources().getStringArray(R.array.environments));
+//            actionBar.setSelectedNavigationItem(envs.indexOf(Settings.getEnvironment(this)));
         }
     }
 
@@ -94,7 +88,7 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.settings:
+            case R.id.request_settings:
                 NavController navController = getNavController();
                 navController.navigate(R.id.open_settings_fragment);
                 return true;
