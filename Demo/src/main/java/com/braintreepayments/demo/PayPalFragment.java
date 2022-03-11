@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -24,7 +25,7 @@ import com.braintreepayments.api.PayPalClient;
 import com.braintreepayments.api.PayPalListener;
 import com.braintreepayments.api.PaymentMethodNonce;
 
-public class PayPalFragment extends BaseFragment implements PayPalListener {
+public class PayPalFragment extends Fragment implements PayPalListener {
 
     private String deviceData;
     private BraintreeClient braintreeClient;
@@ -85,21 +86,13 @@ public class PayPalFragment extends BaseFragment implements PayPalListener {
         });
     }
 
-    private void handlePayPalResult(PaymentMethodNonce paymentMethodNonce) {
-        if (paymentMethodNonce != null) {
-            super.onPaymentMethodNonceCreated(paymentMethodNonce);
-
-            PayPalFragmentDirections.ActionPayPalFragmentToDisplayNonceFragment action =
-                PayPalFragmentDirections.actionPayPalFragmentToDisplayNonceFragment(paymentMethodNonce);
-            action.setDeviceData(deviceData);
-
-            NavHostFragment.findNavController(this).navigate(action);
-        }
-    }
-
     @Override
     public void onPayPalSuccess(@NonNull PayPalAccountNonce payPalAccountNonce) {
-       handlePayPalResult(payPalAccountNonce);
+        PayPalFragmentDirections.ActionPayPalFragmentToDisplayNonceFragment action =
+                PayPalFragmentDirections.actionPayPalFragmentToDisplayNonceFragment(payPalAccountNonce);
+        action.setDeviceData(deviceData);
+
+        NavHostFragment.findNavController(this).navigate(action);
     }
 
     @Override
