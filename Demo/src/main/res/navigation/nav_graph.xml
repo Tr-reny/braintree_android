@@ -9,8 +9,8 @@
         app:destination="@id/change_auth_and_environment"
         />
 
-    <action android:id="@+id/action_goto_main"
-        app:destination="@id/mainFragment"
+    <action android:id="@+id/action_goto_features"
+        app:destination="@id/featuresFragment"
         />
 
     <fragment
@@ -51,36 +51,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.braintreepayments.demo.MainFragment"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment_to_cardFragment"
-            app:destination="@id/cardFragment"
-            app:popUpTo="@id/mainFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_localPaymentFragment"
-            app:destination="@id/localPaymentFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_payPalFragment"
-            app:destination="@id/payPalFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_googlePayFragment"
-            app:destination="@id/googlePayFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_samsungPayFragment"
-            app:destination="@id/samsungPayFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_visaCheckoutFragment"
-            app:destination="@id/visaCheckoutFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_venmoFragment"
-            app:destination="@id/venmoFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_preferredPaymentMethodsFragment"
-            app:destination="@id/preferredPaymentMethodsFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/cardFragment"
         android:name="com.braintreepayments.demo.CardFragment"
         tools:layout="@layout/fragment_card">
@@ -91,7 +61,7 @@
         <action
             android:id="@+id/action_cardFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -109,7 +79,7 @@
         <action
             android:id="@+id/action_displayNonceFragment_to_createTransactionFragment"
             app:destination="@id/createTransactionFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -134,7 +104,7 @@
         <action
             android:id="@+id/action_localPaymentFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -148,7 +118,7 @@
         <action
             android:id="@+id/action_payPalFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -158,7 +128,7 @@
         <action
             android:id="@+id/action_googlePayFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -168,7 +138,7 @@
         <action
             android:id="@+id/action_visaCheckoutFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -178,7 +148,7 @@
         <action
             android:id="@+id/action_venmoFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -193,7 +163,7 @@
         <action
             android:id="@+id/action_samsungPayFragment_to_displayNonceFragment"
             app:destination="@id/displayNonceFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/featuresFragment"
             app:popUpToInclusive="false" />
     </fragment>
 
