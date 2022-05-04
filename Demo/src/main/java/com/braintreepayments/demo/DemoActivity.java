@@ -36,7 +36,6 @@ public class DemoActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         super.onResume();
-        actionBarController.updateTitle(this);
 
         if (BuildConfig.DEBUG && ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
