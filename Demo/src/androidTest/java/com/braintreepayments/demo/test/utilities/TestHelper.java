@@ -12,13 +12,17 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.braintreepayments.DeviceAutomator;
 import com.braintreepayments.api.ExpirationDateHelper;
+import com.google.android.material.textfield.TextInputLayout;
 
 import static com.braintreepayments.AutomatorAction.click;
 import static com.braintreepayments.AutomatorAssertion.text;
 import static com.braintreepayments.DeviceAutomator.onDevice;
 import static com.braintreepayments.UiObjectMatcher.withClass;
+import static com.braintreepayments.UiObjectMatcher.withContentDescription;
 import static com.braintreepayments.UiObjectMatcher.withResourceId;
 import static com.braintreepayments.UiObjectMatcher.withText;
+import static com.braintreepayments.UiObjectMatcher.withTextContaining;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestHelper {
@@ -53,11 +57,11 @@ public class TestHelper {
 
     private static void ensureEnvironmentIs(String environment) {
         try {
-            onDevice(withText(environment)).check(text(equalTo(environment)));
+            onDevice(withTextContaining(environment)).check(text(containsString(environment)));
         } catch (RuntimeException e) {
-            onDevice(withClass(Spinner.class)).perform(click());
+            onDevice(withText("CONFIG")).perform(click());
+            onDevice(withContentDescription("Environment")).perform(click());
             onDevice(withText(environment)).perform(click());
-            onDevice(withText(environment)).check(text(equalTo(environment)));
         }
     }
 
